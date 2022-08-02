@@ -7,6 +7,7 @@ import Loading from "../components/loadingError/Loading";
 import Message from "../components/loadingError/Error";
 import moment from "moment";
 import { ORDER_PAY_RESET } from "../Redux/Constants/OrderContants";
+import qrCode from "../../public/images/Qr.png"
 
 import { Box, Button, Typography, Modal, Checkbox } from "@mui/material";
 
@@ -283,8 +284,8 @@ const OrderScreen = () => {
                           ຊຳລະເງິນຜ່ານ
                         </Typography>
                         <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                          <p>000020000000</p>
-                          <img src="../../public/images/Qr.png" alt="QrCode" />
+                          <p>160-12-00-01560138-001</p>
+                          <img src={qrCode} alt="QrCode" />
                         </Typography>
                       </Box>
                     </Modal>{" "}
