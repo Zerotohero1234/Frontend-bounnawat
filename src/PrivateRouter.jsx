@@ -4,9 +4,8 @@ import { useSelector } from "react-redux";
 function PrivateRouter() {
   // const userLogin = useSelector((state) => state.userLogin);
   // const { userInfo } = userLogin;
-  const userLogin = useSelector((state) => state.userLogin);
-  const { userInfo } = userLogin;
-  return userInfo ? <Outlet /> : <Navigate to="/login" />;
+  const token = window.localStorage.getItem("userInfo");
+  return token ? <Outlet /> : <Navigate to="/login" />;
 }
 
 export default PrivateRouter;
