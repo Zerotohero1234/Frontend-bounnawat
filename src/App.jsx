@@ -14,6 +14,7 @@ import PlaceOrderScreen from "./screens/PlaceOrderScreen";
 import OrderScreen from "./screens/OrderScreen";
 import NotFound from "./screens/NotFound";
 import PrivateRouter from "../src/PrivateRouter";
+import AddressScreen from "./screens/AddressScreen";
 function App() {
   // const [count, setCount] = useState(0);
 
@@ -28,6 +29,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route element={<PrivateRouter />}>
           <Route path="/profile" element={<ProfileScreen />} />
+          <Route path="login/chooseAddress" element={<AddressScreen />} />
           <Route path="login/shipping" element={<ShippingScreen />} />
           <Route path="/payment" element={<PaymentScreen />} />
           <Route path="/placeorder" element={<PlaceOrderScreen />} />

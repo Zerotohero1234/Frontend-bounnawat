@@ -13,6 +13,7 @@ import {
 import { logout } from "./userActions";
 
 axios.defaults.baseURL = "https://server-bounnawat.herokuapp.com/";
+// axios.defaults.baseURL = "http://localhost:5000";
 
 // PRODUCT LIST
 export const listProduct =
@@ -23,8 +24,8 @@ export const listProduct =
 
       let link = `/api/products?keyword=${keyword}?&page=${currentPage}`;
 
-      if(category){
-        link = `/api/products?keyword=${keyword}?&page=${currentPage}&category=${category}`
+      if (category) {
+        link = `/api/products?keyword=${keyword}?&page=${currentPage}&category=${category}`;
       }
 
       const { data } = await axios.get(link);

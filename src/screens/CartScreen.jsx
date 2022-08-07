@@ -4,6 +4,7 @@ import { Link, useParams, useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart, removefromcart } from "../Redux/Actions/cartActions";
 import NumberFormat from "react-number-format";
+import { getUserDetails } from "../Redux/Actions/userActions";
 const CartScreen = () => {
   window.scrollTo(0, 0);
   const dispatch = useDispatch();
@@ -16,16 +17,24 @@ const CartScreen = () => {
   const cart = useSelector((state) => state.cart);
   const { cartItems } = cart;
 
+  const userDetails = useSelector((state) => state.userDetails);
+  const { user } = userDetails;
+
   const total = cartItems.reduce((a, i) => a + i.qty * i.price, 0);
 
   useEffect(() => {
+    dispatch(getUserDetails("profile"));
     if (productId) {
       dispatch(addToCart(productId, qty));
     }
   }, [dispatch, productId, qty]);
 
   const checkOutHandler = () => {
-    navigate("/login?redirect=shipping");
+    if (user.shippingAddress.address === "vientaine") {
+      navigate("/login?redirect=shipping");
+    } else {
+      navigate("/login/chooseAddress");
+    }
   };
 
   const removeFromCartHandler = (id) => {
@@ -116,7 +125,7 @@ const CartScreen = () => {
               <Link to="/" className="col-md-6">
                 <button>ເລືອກຊື້ສິນຄ້າຕໍ່</button>
               </Link>
-              {total > 0 && (
+              {total > 0 &&  (
                 <div className="col-md-6 d-flex justify-content-md-end mt-3 mt-md-0">
                   <button onClick={checkOutHandler}>ຢືນຢັນ</button>
                 </div>
