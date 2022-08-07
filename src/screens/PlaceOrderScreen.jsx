@@ -46,7 +46,7 @@ const PlaceOrderScreen = () => {
     dispatch(
       createOrder({
         orderItems: cart.cartItems,
-        shippingAddress: cart.shippingAddress,
+        shippingAddress: userInfo.shippingAddress,
         paymentMethod: cart.paymentMethod,
         itemsPrice: cart.itemsPrice,
         shippingPrice: cart.shippingPrice,
@@ -89,7 +89,7 @@ const PlaceOrderScreen = () => {
                 <h5>
                   <strong>ຂໍ້ມູນການສັ່ງຊື້</strong>
                 </h5>
-                <p>ເລກບັນຊີສະມາຊິກ: {cart.shippingAddress.country}</p>
+                <p>ເລກບັນຊີສະມາຊິກ: {userInfo.shippingAddress.country}</p>
                 <p>ຊຳລະຜ່ານ: {cart.paymentMethod}</p>
               </div>
             </div>
@@ -107,9 +107,11 @@ const PlaceOrderScreen = () => {
                   <strong>ສະຖານທີ່ສົ່ງ</strong>
                 </h5>
                 <p>
-                  ສະຖານທີ່: {cart.shippingAddress.city},{" "}
-                  {cart.shippingAddress.address},{" "}
-                  {cart.shippingAddress.postalCode}
+                  ສະຖານທີ່: {userInfo.shippingAddress.city},{" "}
+                  {userInfo.shippingAddress.address},{" "}
+                  <p>
+                    ເບີໂທ: {userInfo.shippingAddress.postalCode}
+                  </p>
                 </p>
               </div>
             </div>

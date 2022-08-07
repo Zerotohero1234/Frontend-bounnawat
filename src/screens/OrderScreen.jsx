@@ -29,7 +29,11 @@ const OrderScreen = () => {
   window.scrollTo(0, 0);
   const [open, setOpen] = React.useState(false);
   const [confirm, setConfirm] = useState(false);
-  const confirmCheckBox = () => setConfirm(true);
+  // const confirmCheckBox = () => setConfirm(true);
+  const confirmCheckBox = () => {
+    setConfirm(true)
+    setOpen(false)
+  }
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
@@ -150,7 +154,7 @@ const OrderScreen = () => {
                     <p>
                       ສະຖານທີ່: {order.shippingAddress.city},{" "}
                       {order.shippingAddress.address},{" "}
-                      {order.shippingAddress.postalCode}
+                      <p>ເບີໂທ: {order.shippingAddress.postalCode}</p>
                     </p>
                     {order.isDelivered ? (
                       <div className="bg-info p-2 col-12">
@@ -285,14 +289,21 @@ const OrderScreen = () => {
                         </Typography>
                         <Typography id="modal-modal-description" sx={{ mt: 2 }}>
                           <p>160-12-00-01560138-001</p>
-                          <img src={qrCode} alt="QrCode" />
+                          <img src={qrCode} alt="QrCode" /> <br/>
+                          <Button  onClick={confirmCheckBox} variant="contained" color="success" >ກົດເພື່ອຢືນຢັນການຊຳລະເງິນ</Button>
                         </Typography>
                       </Box>
                     </Modal>{" "}
                     <br />
+                    { confirm ? (
                       <button type="submit" onClick={successPaymentHandler}>
-                        ຢືນຢັນການຊຳລະເງິນ
-                      </button>
+                      ຢືນຢັນການຊຳລະເງິນ
+                    </button>
+                    ) : (
+                      <button className="btn btn-secondary" disabled type="submit">
+                      ຢືນຢັນການຊຳລະເງິນ
+                    </button>
+                    ) }
                   </div>
                 )}
               </div>

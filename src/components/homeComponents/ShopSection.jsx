@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import Rating from "./Rating";
 // import Pagination from "./pagination";
 // import Products from "../../data/Products";
@@ -83,25 +83,6 @@ const ShopSection = (props) => {
       <div className="product-container">
         <div className="container">
           <h2 className="productsHeading">ສິນຄ້າ</h2>
-          {/* <Box sx={{ minWidth: 120 }}>
-            <FormControl fullWidth>
-              <p id="demo-simple-select-label">ປະເພດສິນຄ້າ</p>
-              <Select
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
-                value={category}
-                label="Age"
-                onChange={handleChange}
-              >
-                {categories &&
-                  categories.map((cat) => (
-                    <MenuItem onClick={submitdrh} value={cat}>
-                      {cat}
-                    </MenuItem>
-                  ))}
-              </Select>
-            </FormControl>
-          </Box> */}
 
           <div className="content">
           <div className="chips-wrapper">
@@ -135,7 +116,7 @@ const ShopSection = (props) => {
                             <div className="border-product">
                               <Link to={`/products/${product._id}`}>
                                 <div className="shopBack">
-                                  <img src={product.image} alt={product.name} />
+                                  <img src={product.image} alt={product.name}  />
                                 </div>
                               </Link>
 
@@ -166,11 +147,6 @@ const ShopSection = (props) => {
                   )}
 
                   {/* Pagination */}
-                  {/* <Pagination
-                    pages={pages}
-                    page={page}
-                    keyword={keyword ? keyword : ""}
-                  /> */}
 
                   {resultPerPage < count && (
                     <div className="paginationBox">
