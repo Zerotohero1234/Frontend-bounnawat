@@ -5,8 +5,12 @@ import Header from "../components/Header";
 import Loading from "../components/loadingError/Loading";
 import Toast from "../components/loadingError/Toast";
 import { saveShippingAddress } from "../Redux/Actions/cartActions";
-import { updateUserAddress } from "../Redux/Actions/userActions";
+import {
+  getUserDetails,
+  updateUserAddress,
+} from "../Redux/Actions/userActions";
 import { toast } from "react-toastify";
+import Message from "../components/loadingError/Error";
 
 const ShippingScreen = () => {
   window.scrollTo(0, 0);
@@ -31,6 +35,7 @@ const ShippingScreen = () => {
   const [city, setCity] = useState(shippingAddress.city);
   const [postalCode, setPostalCode] = useState(shippingAddress.postalCode);
   const [country, setCountry] = useState(shippingAddress.country);
+  const [canPress, setCanPress] = useState(false);
   const toastId = React.useRef(null);
 
   const dispatch = useDispatch();
@@ -44,7 +49,6 @@ const ShippingScreen = () => {
   //     setCountry(user.shippingAddress.country);
   //   }
   // }, [dispatch, user]);
-  
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -54,15 +58,29 @@ const ShippingScreen = () => {
 
   const editAddress = (e) => {
     e.preventDefault();
-      // UPDATE PROFILE
-      dispatch(updateUserAddress({ id: user._id, shippingAddress: { address, city, postalCode, country } }));
-      if (!toast.isActive(toastId.current)) {
-        toastId.current = toast.success("ລະບຸສະຖານທີ່ສົ່ງຮຽບຮ້ອຍແລ້ວ", Toastobjects);
-      }
+    // UPDATE PROFILE
+    dispatch(
+      updateUserAddress({
+        id: user._id,
+        shippingAddress: { address, city, postalCode, country },
+      })
+    );
+    if (!toast.isActive(toastId.current)) {
+      toastId.current = toast.success(
+        "ລະບຸສະຖານທີ່ສົ່ງຮຽບຮ້ອຍແລ້ວ",
+        Toastobjects
+      );
+      setCanPress(true);
+    }
   };
+
+  useEffect(() => {
+    dispatch(getUserDetails("profile"));
+  }, [dispatch]);
+
   return (
     <>
-    <Toast />
+      <Toast />
       <Header />
       {error && <Message variant="alert-danger">{error}</Message>}
       {loading && <Loading />}
@@ -101,8 +119,18 @@ const ShippingScreen = () => {
             required
             onChange={(e) => setCountry(e.target.value)}
           />
-          <button className="btn btn-info" type="button" onClick={editAddress}>ຢືນຢັນສະຖານທີ່ໄຫ້ສົ່ງ</button>
-          <button className="btn btn-success" type="submit">ດຳເນີນການຕໍ່ໄປ</button>
+          <button className="btn btn-info" type="button" onClick={editAddress}>
+            ຢືນຢັນສະຖານທີ່ໄຫ້ສົ່ງ
+          </button>
+          {canPress ? (
+            <button className="btn btn-success" type="submit">
+              ດຳເນີນການຕໍ່ໄປ
+            </button>
+          ) : (
+            <button disabled className="btn btn-secondary" type="submit">
+              ດຳເນີນການຕໍ່ໄປ
+            </button>
+          )}
         </form>
       </div>
     </>

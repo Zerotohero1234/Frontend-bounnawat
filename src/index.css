@@ -612,8 +612,7 @@ textarea:focus {
   margin-top: 30px;
 }
 .Login p a,
-.Login3 p a
-.Login4 p a {
+.Login3 p a .Login4 p a {
   color: #7a7a7a;
 }
 /* PROFILE */
@@ -1023,8 +1022,6 @@ footer {
   gap: 25px;
 }
 
-
-
 /* Main content starts here */
 /* .content{
   width: calc(100vw - 240px);
@@ -1053,7 +1050,7 @@ footer {
   white-space: nowrap;
   cursor: pointer;
   color: #fff;
-  transition: .5s;
+  transition: 0.5s;
 }
 
 .chip:hover {
@@ -1130,6 +1127,15 @@ footer {
   text-align: center;
 }
 
+.pHeading1 {
+  margin: 2vmax auto;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.171);
+  padding: 2vmax;
+  color: rgba(0, 0, 0, 0.678);
+  font: 500 1.5vmax;
+  text-align: center;
+}
+
 .productCard {
   width: 14vmax;
   display: flex;
@@ -1174,7 +1180,6 @@ footer {
 
   transform: translateY(-1vmax);
 }
-
 
 .product-main {
   margin-bottom: 30px;

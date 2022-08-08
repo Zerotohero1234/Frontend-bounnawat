@@ -37,6 +37,10 @@ const CartScreen = () => {
     }
   };
 
+  const checkOutHandler1 = () => {
+    navigate("/login?redirect=chooseAddress");
+  };
+
   const removeFromCartHandler = (id) => {
     dispatch(removefromcart(id));
   };
@@ -99,12 +103,14 @@ const CartScreen = () => {
                 </div>
                 <div className="cart-price mt-3 mt-md-0 col-md-2 align-items-sm-end align-items-start  d-flex flex-column justify-content-center col-sm-7">
                   <h6>ລາຄາ</h6>
-                  <h4><NumberFormat
-                value={item.price}
-                displayType={"text"}
-                thousandSeparator={true}
-                prefix={"₭"}
-              /></h4>
+                  <h4>
+                    <NumberFormat
+                      value={item.price}
+                      displayType={"text"}
+                      thousandSeparator={true}
+                      prefix={"₭"}
+                    />
+                  </h4>
                 </div>
               </div>
             ))}
@@ -113,21 +119,27 @@ const CartScreen = () => {
             <div className="total">
               <span className="sub">ລວມລາຄາທັງໝົດ:</span>
               {/* <span className="total-price">₭{total}</span> */}
-              <span className="total-price"><NumberFormat
-                value={total}
-                displayType={"text"}
-                thousandSeparator={true}
-                prefix={"₭"}
-              /></span>
+              <span className="total-price">
+                <NumberFormat
+                  value={total}
+                  displayType={"text"}
+                  thousandSeparator={true}
+                  prefix={"₭"}
+                />
+              </span>
             </div>
             <hr />
             <div className="cart-buttons d-flex align-items-center row">
               <Link to="/" className="col-md-6">
                 <button>ເລືອກຊື້ສິນຄ້າຕໍ່</button>
               </Link>
-              {total > 0 &&  (
+              {total > 0 && user ? (
                 <div className="col-md-6 d-flex justify-content-md-end mt-3 mt-md-0">
                   <button onClick={checkOutHandler}>ຢືນຢັນ</button>
+                </div>
+              ) : (
+                <div className="col-md-6 d-flex justify-content-md-end mt-3 mt-md-0">
+                  <button onClick={checkOutHandler1}>ຢືນຢັນ</button>
                 </div>
               )}
             </div>
