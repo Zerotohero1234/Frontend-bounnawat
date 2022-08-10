@@ -188,7 +188,7 @@ const Header = () => {
 
                       <Link
                         className="dropdown-item"
-                        to="/"
+                        to="#"
                         onClick={logoutHandler}
                       >
                         ອອກຈາກລະບົບ
